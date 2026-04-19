@@ -32,6 +32,7 @@ let params = {
 
     seed: 12345,
     // Palette I like: earthy/muted tones that work well together
+    // Also fond of: ['#e8d5b7', '#a0522d', '#2f4f4f', '#8fbc8f'] (warm forest)
     colorPalette: ['#d97757', '#6a9bcc', '#788c5d', '#b0aea5'],
     // Add YOUR parameters here based on your algorithm
 };
@@ -84,4 +85,9 @@ function draw() {
     // - Call redraw() when parameters change
 }
 
-// ================
+// Quick helper: press 's' to save a PNG snapshot
+function keyPressed() {
+    if (key === 's') saveCanvas('sketch', 'png');
+}
+
+// =======
