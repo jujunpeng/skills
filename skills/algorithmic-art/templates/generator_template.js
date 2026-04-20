@@ -33,8 +33,13 @@ let params = {
     seed: 12345,
     // Palette I like: earthy/muted tones that work well together
     // Also fond of: ['#e8d5b7', '#a0522d', '#2f4f4f', '#8fbc8f'] (warm forest)
+    // Another good one: ['#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51'] (sunset ocean)
     colorPalette: ['#d97757', '#6a9bcc', '#788c5d', '#b0aea5'],
     // Add YOUR parameters here based on your algorithm
+
+    // Canvas size — 800x800 is a good default but 1000x1000 gives more room
+    // to work with for detailed pieces
+    canvasSize: 800,
 };
 
 // ============================================================================
@@ -53,7 +58,7 @@ function initializeSeed(seed) {
 // ============================================================================
 
 function setup() {
-    createCanvas(800, 800);
+    createCanvas(params.canvasSize, params.canvasSize);
 
     // Initialize seed first
     initializeSeed(params.seed);
@@ -81,13 +86,4 @@ function draw() {
     // - Can optionally call noLoop() after N frames
 
     // Option 3: User-triggered regeneration
-    // - Use noLoop() by default
-    // - Call redraw() when parameters change
-}
-
-// Quick helper: press 's' to save a PNG snapshot
-function keyPressed() {
-    if (key === 's') saveCanvas('sketch', 'png');
-}
-
-// =======
+    // - Use
