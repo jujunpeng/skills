@@ -37,7 +37,11 @@ The following operations are blocked to prevent abuse:
 | Parameter | Type   | Description                        |
 |-----------|--------|------------------------------------|
 | `code`    | `str`  | The Python source code to execute  |
-| `timeout` | `int`  | Max execution time in seconds (default: 10) |
+| `timeout` | `int`  | Max execution time in seconds (default: 30) |
+
+> **Personal note:** I bumped the default timeout from 10s to 30s because I frequently run
+> data processing snippets that need a bit more time. Adjust back to 10 if you're in a
+> stricter environment.
 
 ## Output
 
