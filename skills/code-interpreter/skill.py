@@ -13,7 +13,7 @@ from typing import Any
 
 
 MAX_OUTPUT_LENGTH = 10_000  # characters
-FORBIDDEN_MODULES = {"os", "subprocess", "sys", "shutil", "socket", "requests"}
+FORBIDDEN_MODULES = {"os", "subprocess", "sys", "shutil", "socket", "requests", "urllib", "http"}
 
 
 def is_safe_code(code: str) -> tuple[bool, str]:
@@ -90,66 +90,4 @@ def execute_code(code: str, timeout_seconds: int = 10) -> dict[str, Any]:
             last_expr = None
             exec_tree = tree
 
-        compiled = compile(exec_tree, "<skill>", "exec")
-
-        old_stdout, old_stderr = sys.stdout, sys.stderr
-        sys.stdout, sys.stderr = stdout_capture, stderr_capture
-        try:
-            exec(compiled, local_ns)  # noqa: S102
-            if last_expr is not None:
-                compiled_expr = compile(last_expr, "<skill>", "eval")
-                last_result = eval(compiled_expr, local_ns)  # noqa: S307
-        finally:
-            sys.stdout, sys.stderr = old_stdout, old_stderr
-
-    except Exception:  # noqa: BLE001
-        sys.stdout, sys.stderr = sys.__stdout__, sys.__stderr__
-        error_text = traceback.format_exc()
-        return {
-            "success": False,
-            "stdout": stdout_capture.getvalue()[:MAX_OUTPUT_LENGTH],
-            "stderr": stderr_capture.getvalue()[:MAX_OUTPUT_LENGTH],
-            "error": error_text,
-            "result": None,
-        }
-
-    return {
-        "success": True,
-        "stdout": stdout_capture.getvalue()[:MAX_OUTPUT_LENGTH],
-        "stderr": stderr_capture.getvalue()[:MAX_OUTPUT_LENGTH],
-        "error": None,
-        "result": last_result,
-    }
-
-
-def format_result(execution_result: dict[str, Any]) -> str:
-    """Format an execution result dict into a human-readable string."""
-    parts: list[str] = []
-
-    if execution_result["stdout"]:
-        parts.append(f"```\n{execution_result['stdout'].rstrip()}\n```")
-
-    if execution_result["result"] is not None:
-        try:
-            pretty = json.dumps(execution_result["result"], indent=2, default=str)
-        except (TypeError, ValueError):
-            pretty = repr(execution_result["result"])
-        parts.append(f"Result: `{pretty}`")
-
-    if not execution_result["success"]:
-        parts.append(f"**Error:**\n```\n{execution_result['error'].rstrip()}\n```")
-
-    return "\n\n".join(parts) if parts else "*(no output)*"
-
-
-def run(code: str) -> str:
-    """Entry point called by the skill runner.
-
-    Args:
-        code: Python code string provided by the model.
-
-    Returns:
-        Formatted string result suitable for returning to the conversation.
-    """
-    result = execute_code(code)
-    return format_result(result)
+        compiled = c
