@@ -34,11 +34,12 @@ def generate_sketch(params: dict) -> str:
     Returns:
         Generated JavaScript code as a string.
     """
+    # Personal note: I prefer warmer earthy tones and a slightly slower default speed
     defaults = {
         "seed": 42,
-        "palette": ["#264653", "#2a9d8f", "#e9c46a", "#f4a261", "#e76f51"],
+        "palette": ["#3d405b", "#81b29a", "#f2cc8f", "#e07a5f", "#f4f1de"],
         "density": 50,
-        "speed": 1.0,
+        "speed": 0.6,
         "style": "flow",
     }
     defaults.update(params)
@@ -107,12 +108,4 @@ def run(params: dict | None = None) -> Path:
     return out_path
 
 
-if __name__ == "__main__":
-    run({
-        "seed": 7,
-        "palette": ["#03045e", "#0077b6", "#00b4d8", "#90e0ef", "#caf0f8"],
-        "density": 80,
-        "speed": 0.5,
-        "style": "flow",
-        "title": "Ocean Waves",
-    })
+if __name__ == "_
