@@ -34,12 +34,12 @@ def generate_sketch(params: dict) -> str:
     Returns:
         Generated JavaScript code as a string.
     """
-    # Personal note: I prefer warmer earthy tones and a slightly slower default speed
+    # Personal note: I prefer cooler blue/teal tones and a slightly slower default speed
     defaults = {
         "seed": 42,
-        "palette": ["#3d405b", "#81b29a", "#f2cc8f", "#e07a5f", "#f4f1de"],
+        "palette": ["#264653", "#2a9d8f", "#e9c46a", "#f4a261", "#e76f51"],
         "density": 50,
-        "speed": 0.6,
+        "speed": 0.5,
         "style": "flow",
     }
     defaults.update(params)
@@ -104,8 +104,4 @@ def run(params: dict | None = None) -> Path:
     title = params.get("title", "Algorithmic Art")
     html = build_viewer(sketch_js, title=title)
     out_path = save_output(html, filename="sketch.html")
-    print(f"Generated sketch saved to: {out_path}")
-    return out_path
-
-
-if __name__ == "_
+    p
