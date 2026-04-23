@@ -35,7 +35,7 @@ The following operations are blocked to prevent abuse:
 ## Input
 
 | Parameter | Type   | Description                        |
-|-----------|--------|------------------------------------|
+|-----------|--------|------------------------------------||
 | `code`    | `str`  | The Python source code to execute  |
 | `timeout` | `int`  | Max execution time in seconds (default: 30) |
 
@@ -72,6 +72,18 @@ data = [3, 1, 4, 1, 5, 9, 2, 6]
 data.sort()
 print(f"Sorted: {data}")
 print(f"Max: {max(data)}, Min: {min(data)}")
+"""
+result = execute_code(code)
+```
+
+### NumPy / pandas snippets
+```python
+# Note: numpy and pandas are available in the sandbox environment.
+# Useful for quick data exploration without spinning up a full notebook.
+code = """
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5])
+print(f"Mean: {arr.mean()}, Std: {arr.std():.4f}")
 """
 result = execute_code(code)
 ```
